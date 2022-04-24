@@ -19,10 +19,12 @@ jobs:
         env:
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          APP_SECRET_KEY: ${{ secrets.APP_SECRET_KEY }}
         run: docker-compose up -d && docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test"
       - name: Lint
         env:
             DB_USER: ${{ secrets.DB_USER }}
             DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+            APP_SECRET_KEY: ${{ secrets.APP_SECRET_KEY }}
         run: docker-compose run --rm app sh -c "flake8"
 
